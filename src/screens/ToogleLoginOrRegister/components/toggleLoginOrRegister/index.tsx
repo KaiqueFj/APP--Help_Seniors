@@ -1,9 +1,19 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import { ImageBackground, Linking, StyleSheet, Text, View } from 'react-native';
-
-import { styles } from './styles'
+import { ImageBackground, Linking, Text, View } from 'react-native';
+import { theme } from '../../../../global/styles/theme';
+import { styles } from './styles';
 
 export function ToggleLoginOrRegisterOptions() {
+    const navigation = useNavigation()
+
+    function handleRegister(){
+        navigation.navigate('Register')
+    }
+
+    function handleLogin(){
+        navigation.navigate('Login')
+    }
 
     return (
         <View style={styles.container}>
@@ -15,7 +25,7 @@ export function ToggleLoginOrRegisterOptions() {
 
             <View style={styles.toggleLoginRegisterContainer}>
                 <Text style={styles.link}
-                    onPress={() => Linking.openURL('http://google.com')}>
+                    onPress={handleRegister}>
                     Registre-se
                 </Text>
 
@@ -30,8 +40,8 @@ export function ToggleLoginOrRegisterOptions() {
                         }}
                     />
 
-                    <Text style={[styles.link, { color: '#3b1f8d' }]}
-                        onPress={() => Linking.openURL('http://google.com')}>
+                    <Text style={[styles.link, { color: theme.colors.darkPurple }]}
+                        onPress={handleLogin}>
                         Login
                     </Text>
                 </View>

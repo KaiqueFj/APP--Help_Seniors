@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
         width: 95,
 
         borderRadius: 10,
-        backgroundColor: '#14d8e4',
+        backgroundColor: theme.colors.blue,
 
         flex: 1,
         flexDirection: 'row',
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
         paddingLeft: 5,
         marginLeft: 10,
 
-        shadowColor: '#14d8e4',
+        shadowColor: theme.colors.blue,
         shadowOffset: {
           width: 5,
           height: 2
