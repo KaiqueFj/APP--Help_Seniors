@@ -2,22 +2,9 @@ import { Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/mo
 import React from 'react';
 import { StyleSheet, Text, SafeAreaView, View, ImageBackground,Button  } from 'react-native';
 import { Linking } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
 
-// ... other code from the previous section
+
 
 export function ToggleLoginOrRegisterOptions() {
 

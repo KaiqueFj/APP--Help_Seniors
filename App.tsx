@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { View, Text } from 'react-native';
 import { SafeAreaView, StyleSheet, Image, ImageBackground } from 'react-native';
 import AppLoading from 'expo-app-loading';
 
@@ -13,8 +14,40 @@ import {
   from '@expo-google-fonts/montserrat';
 
 import { ToggleLoginOrRegisterOptions } from './src/components/toggleLoginOrRegister/index'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AboutUs } from './src/components/AboutUs/index'
+
+function HomeScreen() {
+  return (
+    <SafeAreaView style={styles.container}>
+
+    <ImageBackground source={require('./assets/backgrounds/whiteTheme1.png')} style={styles.backgroundImage} >
+
+      <ToggleLoginOrRegisterOptions />
+      <AboutUs/>
+
+    </ImageBackground>
+
+    {/* Mobile Status Bar color -> get theme and change this */}
+    <StatusBar style="dark" />
+  </SafeAreaView>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+
+
 
 export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 
   // Google Fonts
   let [fontsLoaded] = useFonts({
@@ -28,19 +61,6 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return (
-    <SafeAreaView style={styles.container}>
-
-      <ImageBackground source={require('./assets/backgrounds/whiteTheme1.png')} style={styles.backgroundImage} >
-       
-        <ToggleLoginOrRegisterOptions />
-      
-      </ImageBackground>
-
-      {/* Mobile Status Bar color -> get theme and change this */}
-      <StatusBar style="dark" />
-    </SafeAreaView>
-  );
 }
 
 const styles = StyleSheet.create({
@@ -67,3 +87,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }
 });
+
