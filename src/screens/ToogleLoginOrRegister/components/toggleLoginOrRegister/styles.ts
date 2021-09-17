@@ -1,49 +1,7 @@
-import { Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-import React from 'react';
-import { StyleSheet, Text, SafeAreaView, View, ImageBackground,Button  } from 'react-native';
-import { Linking } from 'react-native';
+import { StyleSheet } from "react-native";
+import {theme} from '../../../../global/styles/theme'
 
-
-
-
-export function ToggleLoginOrRegisterOptions() {
-
-    return (
-        <View style={styles.container}>
-            <ImageBackground
-                source={require('../../../assets/icons/userPurple3.png')}
-                resizeMode='cover'
-                style={styles.userImage}
-            />
-
-            <View style={styles.toggleLoginRegisterContainer}>
-                <Text style={styles.link}
-                    onPress={() => Linking.openURL('http://google.com')}>
-                    Registre-se
-                </Text>
-
-                <View style={styles.LoginContainer}>
-                    <ImageBackground
-                        source={require('../../../assets/icons/loginPurple.png')}
-                        resizeMode='cover'
-                        style={{
-                            width: 25,
-                            height: 25,
-                            marginRight: 5
-                        }}
-                    />
-
-                    <Text style={[styles.link, { color: '#3b1f8d' }]}
-                        onPress={() => Linking.openURL('http://google.com')}>
-                        Login
-                    </Text>
-                </View>
-            </View>
-        </View>
-    )
-}
-
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container: {
         width: 280,
         maxHeight: 200,
@@ -71,7 +29,7 @@ const styles = StyleSheet.create({
         height: 70,
         padding: 10,
 
-        backgroundColor: '#3b1f8d',
+        backgroundColor: theme.colors.darkPurple,
         borderRadius: 15,
 
         flex: 1,
