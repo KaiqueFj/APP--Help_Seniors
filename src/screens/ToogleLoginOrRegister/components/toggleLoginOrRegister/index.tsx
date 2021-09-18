@@ -7,14 +7,6 @@ import { styles } from './styles';
 export function ToggleLoginOrRegisterOptions() {
     const navigation = useNavigation()
 
-    function handleRegister(){
-        navigation.navigate('Register')
-    }
-
-    function handleLogin(){
-        navigation.navigate('Login')
-    }
-
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -25,7 +17,7 @@ export function ToggleLoginOrRegisterOptions() {
 
             <View style={styles.toggleLoginRegisterContainer}>
                 <Text style={styles.link}
-                    onPress={handleRegister}>
+                    onPress={() => navigation.navigate('Register')}>
                     Registre-se
                 </Text>
 
@@ -41,7 +33,7 @@ export function ToggleLoginOrRegisterOptions() {
                     />
 
                     <Text style={[styles.link, { color: theme.colors.darkPurple }]}
-                        onPress={handleLogin}>
+                        onPress={() => navigation.navigate('Login')}>
                         Login
                     </Text>
                 </View>
