@@ -1,26 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
-
-import {styles} from './styles';
+import { Image, Text, View } from "react-native";
+import base64 from 'react-native-base64';
+import { styles } from './styles';
 
 type HeaderProps = {
-    name : string,
-    profileImage : string 
+    name: string,
+    profileImage: string
 }
 
-
-export function Header(props : HeaderProps) {
+export function Header(props: HeaderProps) {
 
     const [imageProfile, setImageProfile] = useState('')
 
     useEffect(() => {
         // Set Image in profile
-        setImageProfile('data:image/jpeg;base64,' + btoa(props.profileImage))
+        setImageProfile('data:image/jpeg;base64,' + base64.encode(props.profileImage))
     }, [])
 
-    return(
+    return (
         <View style={styles.container}>
-            <Text>{props.name}</Text>
+
+            <Text style={styles.headerFont}>
+                Bem-Vindo(a) {'\n'}
+                
+                <Text style={styles.headerFont}>
+                    {props.name}
+                </Text>
+            </Text>
+
+            <Image
+                source={{ uri: imageProfile }}
+                style={styles.imageProfile}
+            />
         </View>
     )
 }
