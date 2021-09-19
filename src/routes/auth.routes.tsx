@@ -3,8 +3,7 @@ import React from "react";
 import { Home } from "../screens/Home";
 import { Login } from "../screens/Login";
 import { Register } from "../screens/Register";
-import { ToogleLoginOrRegister } from "../screens/ToogleLoginOrRegister";
-
+import { NotLoggedHome } from "../screens/NotLoggedHome";
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -17,8 +16,12 @@ export function AuthRoutes() {
             }}
         >
             <Screen
-                name='ToogleLoginOrRegister'
-                component={ToogleLoginOrRegister}
+                name="Home"
+                component={Home}
+            />
+            <Screen
+                name='NotLoggedHome'
+                component={NotLoggedHome}
             />
             <Screen
                 name='Register'
@@ -27,10 +30,6 @@ export function AuthRoutes() {
             <Screen
                 name='Login'
                 component={Login}
-            />
-            <Screen
-                name="Home"
-                component={Home}
             />
         </Navigator>
     )
