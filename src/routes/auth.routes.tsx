@@ -1,13 +1,15 @@
-import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
+import React from "react";
+import { Home } from "../screens/Home";
+import { Login } from "../screens/Login";
 import { Register } from "../screens/Register";
 import { ToogleLoginOrRegister } from "../screens/ToogleLoginOrRegister";
-import { Login } from "../screens/Login";
+
 
 const { Navigator, Screen } = createStackNavigator()
 
 export function AuthRoutes() {
+
     return (
         <Navigator
             screenOptions={{
@@ -25,6 +27,10 @@ export function AuthRoutes() {
             <Screen
                 name='Login'
                 component={Login}
+            />
+            <Screen
+                name="Home"
+                component={Home}
             />
         </Navigator>
     )

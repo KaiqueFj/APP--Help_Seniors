@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { Linking, Text, TextInput, View } from "react-native";
+import { Text, View } from "react-native";
 import { style } from './styles';
 
 export function Header() {
@@ -14,7 +14,7 @@ export function Header() {
                 <Text style={style.title}>Faça seu login</Text>
 
                 <Text style={style.legend}>
-                    Caso tenha não tenha uma conta, 
+                    Caso você não tenha uma conta, 
 
                     <Text
                         style={style.link}
