@@ -22,14 +22,18 @@ export function Header(props: HeaderProps) {
 
             <Text style={styles.headerFont}>
                 Bem-Vindo(a) {'\n'}
-                
+
                 <Text style={styles.headerFont}>
                     {props.name}
                 </Text>
             </Text>
 
             <Image
-                source={{ uri: imageProfile }}
+                source={
+                    imageProfile !== ''
+                        ? { uri: imageProfile }
+                        : require('../../../../../assets/icons/userPurple.png')
+                }
                 style={styles.imageProfile}
             />
         </View>

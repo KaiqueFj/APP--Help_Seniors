@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
-
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
-
-import { View, TextInput, ImageBackground, TouchableOpacity, Text, Alert, AsyncStorage } from "react-native";
-import { Header } from "./components/Header";
-
-import { styles } from "./styles";
+import React, { useEffect } from "react";
+import { useForm } from 'react-hook-form';
+import { AsyncStorage, ImageBackground, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { theme } from '../../global/styles/theme';
-
-import { useForm } from 'react-hook-form'
 import { api } from "../../services/api";
-
+import { Header } from "./components/Header";
+import { styles } from "./styles";
 
 type OnSubmitProps = {
     password: string,
@@ -23,6 +16,7 @@ type OnSubmitProps = {
 export function Login() {
 
     const { register, setValue, handleSubmit } = useForm()
+    const navigation = useNavigation()
 
     // Set input data in variable when textInput is changed
     useEffect(() => {
@@ -46,6 +40,8 @@ export function Login() {
             const { token } = await response.data
 
             AsyncStorage.setItem('token', token)
+            navigation.navigate('Home')
+            
         } else {
 
             // Alert Error with notification popup
@@ -142,15 +138,3 @@ export function Login() {
         </View>
     )
 }
-
-// export function Login({navigation}) {
-//     return (
-//        <View>
-//            <Text>Login</Text>
-//            <Button
-//            title='Sobre'
-//            onPress={() => navigation.navigate('sobre')} />
-//        </View>
-
-//     )
-// }

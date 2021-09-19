@@ -1,12 +1,15 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import { MenuItensSection1 } from "../MenuItensSection1";
+import { MenuItensSection2 } from "../MenuItensSection2";
+import { styles } from './styles';
 
-import {styles} from './styles';
+export function Menu() {
 
-export function Menu(){
-    return(
+    return (
         <View style={styles.container}>
-            <Text>Home Menu</Text>
+            <MenuItensSection1 />
+            <MenuItensSection2/>
         </View>
     )
 }

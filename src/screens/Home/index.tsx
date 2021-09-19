@@ -40,6 +40,9 @@ export function Home() {
             setProfileImage(imagePerfil)
 
             setIsLogged(true)
+            
+        } else {
+            setIsLogged(false)
         }
     }
 
