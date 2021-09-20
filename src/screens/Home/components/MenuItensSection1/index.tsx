@@ -27,7 +27,7 @@ export function MenuItensSection1() {
 
                 <TouchableOpacity
                     style={styles.FirstAidContainer}
-                    onPress={() => console.log("FirstAid")}
+                    onPress={() => navigation.navigate('FirstAid')}
                 >
                     <Text style={styles.title}>Primeiros {'\n'}Socorros</Text>
 
@@ -42,7 +42,7 @@ export function MenuItensSection1() {
 
             <TouchableOpacity
                 style={styles.MedicinesContainer}
-                onPress={() => console.log('Medicines')}
+                onPress={() => navigation.navigate('Medicines')}
             >
                 <Text style={styles.title}>Remédios</Text>
 

@@ -23,3 +23,13 @@ export function AppContextProvider(props: AppContextProviderProps){
         </AppContext.Provider>
     )
 }
+
+
+//First aid 
+// function setFirstAidData(props) {
+//     localStorage.setItem('firstAid', JSON.stringify(props))
+// }
+
+// function getFirstAidData() {
+//     return JSON.parse(localStorage.getItem('firstAid'))
+// }
