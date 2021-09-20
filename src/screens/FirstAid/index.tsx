@@ -5,6 +5,9 @@ import { api } from "../../services/api";
 import { ButtonHelpAndFirstAid } from "../../components/ButtonHelpAndFirstAid/index";
 
 import { styles } from './styles'
+import { useApp } from "../../hooks/useApp";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/core";
 
 type FirstAidData = {
     id: number;
@@ -16,6 +19,9 @@ type FirstAidData = {
 
 export function FirstAid() {
     const [data, setData] = useState<FirstAidData[]>()
+
+    const { setFirstAidData } = useApp()
+    const navigation = useNavigation()
 
     useEffect(() => {
         connectApi()
@@ -33,28 +39,27 @@ export function FirstAid() {
 
             {
                 data?.map(firstAid => (
-                    <ButtonHelpAndFirstAid
-                        key={firstAid.id}
-                        legend={firstAid.name}
-                        link='FirstAidPage'
-                    // onClick={() => setFirstAidData(firstAid)}
-                    />
+                    <TouchableOpacity
+                        onPress={() => {
+                            setFirstAidData(firstAid)
+                            navigation.navigate('FirstAidPage')
+                        }}
+                        style={{ 
+                            width: 200,
+                            height: 50,
+                            backgroundColor: 'red',
+                            marginTop: 10,
+                        }}
+                    >
+                        <Text>
+                            {firstAid.name}
+                        </Text>
+
+                    </TouchableOpacity>
+                    
                 ))
             }
-
         </View >
-
-
     )
 
 }
-
-// {props.data.map(firstAid => (
-//     <ButtonHelpAndFirstAid
-//         key={firstAid.id}
-//         legend={firstAid.name}
-//         link='FirstAidPage'
-//         onClick={() => setFirstAidData(firstAid)}
-//     />
-// ))}
-

@@ -1,5 +1,5 @@
+import moment from "moment";
 import { daysOfWeek } from "./daysWeek";
-
 
 type MedicinesData = {
     name: string;
@@ -27,4 +27,17 @@ export function medicinesOnDay(props : MedicinesData[]) {
         if (handleData[i].length > 0) {
             const x = handleData[i].sort(function (a, b) {
                 const n1 = parseInt(b.time.replace(':', ''))
-                const n2 = p
+                const n2 = parseInt(a.time.replace(':', ''))
+
+                return n2 - n1;
+            });
+            array.push(x)
+        } else {
+            array.push([])
+        }
+    }
+
+    console.log(array)
+
+    return array;
+}

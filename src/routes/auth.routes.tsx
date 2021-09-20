@@ -7,6 +7,8 @@ import { NotLoggedHome } from "../screens/NotLoggedHome";
 import { Emergency } from "../screens/Emergency";
 import { FirstAid } from "../screens/FirstAid";
 import { Medicines } from "../screens/Medicines";
+import { FirstAidPage } from "../screens/FirstAidPage";
+
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -41,6 +43,11 @@ export function AuthRoutes() {
             <Screen
                 name='FirstAid'
                 component={FirstAid}
+            />
+
+            <Screen
+                name='FirstAidPage'
+                component={FirstAidPage}
             />
             <Screen
                 name='Medicines'

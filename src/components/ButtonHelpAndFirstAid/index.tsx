@@ -1,13 +1,13 @@
-import React from "react";
 import { useNavigation } from "@react-navigation/core";
+import React from "react";
 import { Text } from "react-native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { nativeViewProps } from 'react-native-gesture-handler/lib/typescript/handlers/NativeViewGestureHandler';
-import { styles } from './styles'
+import { styles } from './styles';
 
 type ButtonHelpAndFirstAidProps = {
-    link: string;
-    legend: string;
+    link: string,
+    legend: string,
+    onPress : () => void,
 }
 
 export function ButtonHelpAndFirstAid(props: ButtonHelpAndFirstAidProps) {

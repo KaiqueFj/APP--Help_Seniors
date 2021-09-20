@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AsyncStorage, Text, View } from "react-native";
+import { useApp } from "../../hooks/useApp";
 import { api } from "../../services/api";
 import { NotLoggedHome } from "../NotLoggedHome";
 import { Header } from "./components/Header";
@@ -9,14 +10,24 @@ import { styles } from './styles';
 
 export function Home() {
 
+    const { getFirstAidData } = useApp()
+
     const [username, setUsername] = useState('')
     const [profileImage, setProfileImage] = useState('')
 
     const [isLogged, setIsLogged] = useState(false)
 
+
     useEffect(() => {
         getData()
+        teste()
     }, [])
+
+    async function teste() {
+        const response = await getFirstAidData()
+        console.log(response)
+    }
+
 
     async function getData() {
 
@@ -40,7 +51,7 @@ export function Home() {
             setProfileImage(imagePerfil)
 
             setIsLogged(true)
-            
+
         } else {
             setIsLogged(false)
         }
@@ -57,7 +68,7 @@ export function Home() {
                 profileImage={profileImage}
             />
 
-            <Menu/>
+            <Menu />
         </View>
     )
 }
