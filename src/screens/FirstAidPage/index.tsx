@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { useApp } from "../../hooks/useApp";
+import { Header } from "../../components/Header";
 import { styles } from './styles';
+import { useNavigation } from "@react-navigation/core";
 
 type FirstAidData = {
     id: number;
@@ -14,36 +17,64 @@ type FirstAidData = {
 export function FirstAidPage() {
     const [firstAid, setFirstAid] = useState<FirstAidData>()
 
-    const { getFirstAidData } = useApp()
+    const { getFirstAidData } = useApp();
+    const navigation = useNavigation();
 
     useEffect(() => {
         teste()
     }, [])
-    
+
     async function teste() {
         const response = await getFirstAidData()
-        setFirstAid(response) 
-    } 
+        setFirstAid(response)
+    }
+
+    const firstAidProcedureTopics = firstAid?.procedure !== undefined ? firstAid?.procedure.split('/') : [];
 
     return (
         <View style={styles.container}>
-            <Text key={firstAid?.id}>FirstAid Page poha</Text>
-           
-            {/* <Header />
+            <Header />
 
-            {
-                data?.map(firstAid => (
-                    <ButtonHelpAndFirstAid
-                        key={firstAid.id}
-                        legend={firstAid.name}
-                        link='FirstAidPage'
-                        onPress={() => setFirstAidData(firstAid)}
+
+            <ScrollView
+                style={styles.scroll}
+            >
+
+                <Text style={styles.title}> {firstAid?.name} </Text>
+
+
+                <TouchableOpacity
+                    style={styles.videoContainer}
+                >
+                    <Image
+                        style={styles.videoBanner}
+                        source={{ uri: 'https://ead.cdmensino.com.br/files/curso-primeiros-socorros.jpg' }}
                     />
-                ))
-            } */}
 
-        </View >
+                    <Image
+                        source={require('../../../assets/icons/playIcon.png')}
+                        style={styles.videoIcon}
+                    />
 
+                </TouchableOpacity>
+
+
+                <Text style={styles.procedureIntroduction}>
+                    {firstAid?.procedureIntroduction}
+                    {'\n'}
+                </Text>
+
+                {firstAidProcedureTopics?.map(procedure => (
+                    <Text
+                        style={styles.procedure}
+                        key={firstAidProcedureTopics.indexOf(procedure) + 1}
+                    >
+                        {`${firstAidProcedureTopics.indexOf(procedure) + 1}. ${procedure}`}
+                    </Text>
+                ))}
+
+            </ScrollView >
+        </View>
     )
 
 }

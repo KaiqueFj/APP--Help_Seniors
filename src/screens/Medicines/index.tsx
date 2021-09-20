@@ -40,15 +40,12 @@ export function Medicines() {
         const medicinesHandled = handleMedicineData(response.data)
         const medicinesStatusHandled = handleStatusOfMedicines(response.data)
 
-        // calls the function to handle the data
-        const allMedicines = medicinesOnDay(medicinesHandled);
+        // // calls the function to handle the data
+        // const allMedicines = medicinesOnDay(medicinesHandled);
 
         // const AllmedicinesHandled = joinMedicinesWithAndWithoutStatus({ allMedicines, medicinesStatusHandled })
-        setMedicines(medicinesHandled)
-        console.log('/////////////////////////////////')
+        // setMedicines(medicinesHandled)
     }
-
-    console.log(medicines)
 
     return (
         <View style={styles.container}>

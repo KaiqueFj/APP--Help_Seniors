@@ -44,14 +44,9 @@ export function FirstAid() {
                             setFirstAidData(firstAid)
                             navigation.navigate('FirstAidPage')
                         }}
-                        style={{ 
-                            width: 200,
-                            height: 50,
-                            backgroundColor: 'red',
-                            marginTop: 10,
-                        }}
+                        style={styles.FirstAidContainer}
                     >
-                        <Text>
+                        <Text style={styles.legend}>
                             {firstAid.name}
                         </Text>
 

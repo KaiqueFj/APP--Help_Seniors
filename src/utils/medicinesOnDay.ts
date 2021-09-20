@@ -37,7 +37,5 @@ export function medicinesOnDay(props : MedicinesData[]) {
         }
     }
 
-    console.log(array)
-
     return array;
 }
