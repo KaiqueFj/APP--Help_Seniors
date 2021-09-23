@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, Linking, ScrollView, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useApp } from "../../hooks/useApp";
 import { Header } from "../../components/Header";
@@ -45,6 +45,7 @@ export function FirstAidPage() {
 
                 <TouchableOpacity
                     style={styles.videoContainer}
+                    onPress={() => Linking.openURL(firstAid?.videoLink !== undefined ? firstAid.videoLink : '')}
                 >
                     <Image
                         style={styles.videoBanner}

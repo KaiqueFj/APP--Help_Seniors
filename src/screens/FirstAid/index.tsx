@@ -40,6 +40,7 @@ export function FirstAid() {
             {
                 data?.map(firstAid => (
                     <TouchableOpacity
+                        key={firstAid.id}
                         onPress={() => {
                             setFirstAidData(firstAid)
                             navigation.navigate('FirstAidPage')

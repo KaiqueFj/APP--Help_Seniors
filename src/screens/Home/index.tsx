@@ -20,14 +20,7 @@ export function Home() {
 
     useEffect(() => {
         getData()
-        teste()
     }, [])
-
-    async function teste() {
-        const response = await getFirstAidData()
-        console.log(response)
-    }
-
 
     async function getData() {
 

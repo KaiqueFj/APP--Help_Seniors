@@ -35,7 +35,5 @@ export const styles = StyleSheet.create({
         fontFamily: theme.fonts.medium500,
         fontSize:35,
         textAlign: "center",
-     
-
     }
 })

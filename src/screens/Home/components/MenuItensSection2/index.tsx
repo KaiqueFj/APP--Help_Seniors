@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { Image, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -5,6 +6,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { styles } from './styles'
 
 export function MenuItensSection2() {
+
+    const navigation = useNavigation()
+
     return (
         <>
             <View style={styles.AppointmentHospitalsContainerss}>
@@ -39,7 +43,7 @@ export function MenuItensSection2() {
 
             <TouchableOpacity
                 style={styles.HelpContainer}
-                onPress={() => console.log('Help')}
+                onPress={() => navigation.navigate('Help')}
             >
                 <Text style={[styles.title, { fontSize: 25 }]}>Precisa de Ajuda?</Text>
 
