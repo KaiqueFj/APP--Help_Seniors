@@ -15,7 +15,7 @@ export function MenuItensSection2() {
 
                 <TouchableOpacity
                     style={styles.AppointmentContainer}
-                    onPress={() => console.log('Appointment')}
+                    onPress={() => navigation.navigate('AppointmentReminderPage')}
                 >
 
                     <Text style={styles.title}>Consultas</Text>

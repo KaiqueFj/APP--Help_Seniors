@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { AsyncStorage, Text, View } from "react-native";
-import { useApp } from "../../hooks/useApp";
+import { AsyncStorage, View } from "react-native";
 import { api } from "../../services/api";
 import { NotLoggedHome } from "../NotLoggedHome";
 import { Header } from "./components/Header";
 import { Menu } from "./components/MenuItems";
-
 import { styles } from './styles';
 
 export function Home() {
-
-    const { getFirstAidData } = useApp()
 
     const [username, setUsername] = useState('')
     const [profileImage, setProfileImage] = useState('')

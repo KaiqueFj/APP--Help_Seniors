@@ -12,14 +12,12 @@ type MedicinesData = {
 }
 
 type JoinMedicinesProps = {
-    allMedicines: MedicinesData[][],
+    allMedicines: [],
     medicinesStatusHandled: MedicinesData[];
 }
 
 
 export function joinMedicinesWithAndWithoutStatus(props : JoinMedicinesProps) {
-
-    console.log(props.medicinesStatusHandled)
 
     const days = daysOfWeek();
     const medicinesWithStatus = props.medicinesStatusHandled;

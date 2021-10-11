@@ -24,6 +24,7 @@
     "react-hook-form": "^7.15.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-base64": "^0.2.1",
+    "react-native-date-picker": "^4.0.0",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "^3.7.2",

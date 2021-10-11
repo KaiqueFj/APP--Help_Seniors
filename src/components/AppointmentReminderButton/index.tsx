@@ -1,23 +1,23 @@
-import { useNavigation } from "@react-navigation/core";
 import React from "react";
+import { useNavigation } from "@react-navigation/core";
 import { Text } from "react-native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from './styles';
 
-type ButtonHelpAndFirstAidProps = {
-    link: string,
-    legend: string,
-    onPress : () => void,
+
+type AppointmentReminderButtonProps = {
+    color: string;
+    legend: string;
+    // onPress : () => void,
 }
 
-export function ButtonHelpAndFirstAid(props: ButtonHelpAndFirstAidProps) {
-
+export function AppointmentReminderButton(props: AppointmentReminderButtonProps) {
     const navigation = useNavigation()
 
     return (
         <TouchableOpacity
 
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('AppointmentReminderPage')}
             style={styles.container}
            
         >

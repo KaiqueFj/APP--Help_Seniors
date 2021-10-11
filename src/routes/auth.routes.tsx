@@ -9,6 +9,8 @@ import { FirstAid } from "../screens/FirstAid";
 import { Medicines } from "../screens/Medicines";
 import { FirstAidPage } from "../screens/FirstAidPage";
 import { Help } from "../screens/Help";
+import { AddAppointmentReminder } from "../screens/AddAppointmentReminder";
+import { AppointmentReminderPage } from "../screens/Appointments";
 
 
 const { Navigator, Screen } = createStackNavigator()
@@ -57,6 +59,14 @@ export function AuthRoutes() {
             <Screen
                 name='Help'
                 component={Help}
+            />
+            <Screen
+                name='AddAppointmentReminder'
+                component={AddAppointmentReminder}
+            />
+            <Screen
+                name='AppointmentReminderPage'
+                component={AppointmentReminderPage}
             />
         </Navigator>
     )

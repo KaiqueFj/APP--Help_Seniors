@@ -3,20 +3,19 @@ import {theme} from '../../global/styles/theme'
 
 export const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: 350,
     height: 50, 
     flex: 0, 
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 1
-  },
+    borderRadius: 1,
+    marginTop: 15,
+    backgroundColor: '#000'
 
+  },
   legend:{
-    color:'#000',
-    fontSize:40,
-    textAlign:'center',
-    paddingLeft : 10,
-    paddingRight : 10
+    color: '#000'
+
   }
 })
