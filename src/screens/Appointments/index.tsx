@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AsyncStorage, Text, View } from "react-native";
+import { AsyncStorage, Text, View, ScrollView } from "react-native";
 import { Header } from "../../components/Header";
 import { api } from "../../services/api";
 import { useApp } from "../../hooks/useApp";
@@ -56,23 +56,27 @@ export function AppointmentReminderPage() {
             <Header />
 
             <View style={styles.appointmentReminder}>
+                <ScrollView>
+                    {data !== undefined ? (
+                        data.map(appointmentReminder => (
+                            <AppointmentReminder
+                                key={appointmentReminder.id}
+                                id={appointmentReminder.id}
+                                state={appointmentReminder.status}
+                                hospitalName={appointmentReminder.hospitalName}
+                                specialty={appointmentReminder.specialty}
+                                time={appointmentReminder.time}
+                                date={appointmentReminder.day}
+                                contactPhone={appointmentReminder.contactPhone}
+                            />
+                        ))
 
-                {data !== undefined ? (
-                    data.map(appointmentReminder => (
-                        <AppointmentReminder
-                            key={appointmentReminder.id}
-                            id={appointmentReminder.id}
-                            state={appointmentReminder.status}
-                            hospitalName={appointmentReminder.hospitalName}
-                            specialty={appointmentReminder.specialty}
-                            time={appointmentReminder.time}
-                            date={appointmentReminder.day}
-                            contactPhone={appointmentReminder.contactPhone}
-                        />
-                    ))
-                ) : <Text>dsadasd</Text>}
+                    ) : <Text>Has not appointments</Text>}
+                </ScrollView>
             </View>
-            {/* <NewAppointmentReminderButton /> */ }
+
+
+            <NewAppointmentReminderButton />
         </View >
     )
 }

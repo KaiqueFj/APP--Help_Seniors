@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   
     appointmentReminder:{
         width: "90%",
-        height: '75%',
+        height: 630,
         borderColor: theme.colors.purple,
 
         paddingTop: 20,

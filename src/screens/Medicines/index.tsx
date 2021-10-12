@@ -45,15 +45,17 @@ export function Medicines() {
         // // calls the function to handle the data
         const allMedicines = medicinesOnDay(medicinesHandled);
 
+
+        {/* @ts-ignore */ }
         const AllmedicinesHandled = joinMedicinesWithAndWithoutStatus({ allMedicines, medicinesStatusHandled })
-        // setMedicines(medicinesHandled)
+        setMedicines(AllmedicinesHandled)
     }
 
     return (
         <View style={styles.container}>
-            {medicines?.map(medicines => (
-                <Text key={medicines.id}>{medicines.name}</Text>
-            ))}
+            {medicines !== undefined ? medicines.map(medicines => (
+                <Text key={medicines.id}>{medicines.name}dsada</Text>
+            )) : <Text>Not has Medicines</Text>}
         </View>
     )
 }

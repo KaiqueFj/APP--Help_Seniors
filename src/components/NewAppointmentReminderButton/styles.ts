@@ -1,23 +1,24 @@
 import { StyleSheet } from "react-native";
-import {theme} from '../../global/styles/theme'
+import { theme } from '../../global/styles/theme'
 
 export const styles = StyleSheet.create({
 
   container: {
-    width: '100%',
-    height: 50, 
-    flex: 0, 
+    width: 360,
+    height: 100,
+    flex: 0,
+    flexDirection: 'row',
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 1
+    backgroundColor: theme.colors.green,
+    borderRadius: 15,
+    position: 'relative',
+    bottom: -35,
+    left: 0,
+    zIndex: 2000,
+
   },
 
-  legend:{
-    fontSize:40,
-    textAlign:'center',
-    paddingLeft : 10,
-    paddingRight : 10,
-    color: '#E33'
-  }
+
 })

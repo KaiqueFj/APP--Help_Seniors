@@ -44,14 +44,38 @@ export const styles = StyleSheet.create({
     },
 
     timeAndDateContainer: {
+        width: '85%',
+        paddingTop: 15,
+        paddingBottom: 15,
 
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
-    timeInputContainer: {
-        width: 150,
-        height: 75,
+    timeContainer: {
+        marginLeft: 7.5
+    },
+
+    dateContainer: {
+        marginRight: 7.5
+    },
+
+    datetimeContainer: {
+        width: '100%',
+    },
+
+    datetimeContainerLegend:{
+        width: 165,
+        height: 50,
+
         backgroundColor: theme.colors.second,
-        overflow: 'hidden',
+        flex: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        marginBottom: 5,
 
         borderRadius: 15,
         borderBottomWidth: 4,
@@ -59,22 +83,29 @@ export const styles = StyleSheet.create({
         borderLeftWidth: 1,
 
         borderColor: theme.colors.purple,
+    },
 
-        flexDirection: 'row',
+    datetimeValue: {
+        color: theme.colors.purple,
+        fontSize: 23,
+        fontFamily: theme.fonts.medium500
+    },
+
+    datetimeButton: {
+        width: 165,
+        height: 50,
+        borderRadius: 15,
+
+        backgroundColor: theme.colors.purple,
+        flex: 0,
         alignItems: 'center',
         justifyContent: 'center',
     },
 
-    timeInput: {
-        width: 60,
-       
-        fontSize: 30,
-        color: theme.colors.purple,
-        fontFamily: theme.fonts.medium500,
-    },
-
-    dateContainer: {
-
+    datetimeButtonLegend: {
+        color: '#fff',
+        fontSize: 25,
+        fontFamily: theme.fonts.medium500
     },
 
     button: {
