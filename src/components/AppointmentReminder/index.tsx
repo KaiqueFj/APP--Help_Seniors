@@ -1,9 +1,12 @@
-import React from 'react';
-import { useNavigation } from "@react-navigation/core";
-import { useEffect } from 'react'
+import React, { useState } from 'react';
 import { AsyncStorage, ScrollView, Text, View } from "react-native";
-import { AppointmentReminderButton } from '../AppointmentReminderButton'
+import { AppointmentReminderButton } from '../AppointmentReminderButton/index'
+import { theme } from '../../global/styles/theme';
+import { api } from '../../services/api';
 import { styles } from './styles';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { style } from '../../screens/Login/components/Header/styles';
+import { useNavigation } from '@react-navigation/core';
 
 
 type AppointmentReminderProps = {
@@ -17,92 +20,89 @@ type AppointmentReminderProps = {
 }
 
 export function AppointmentReminder(props: AppointmentReminderProps) {
-
     const navigation = useNavigation()
+    const [show, setShow] = useState(false)
 
-    // async function handleDeleteAppointment(appointmentReminderId: number) {
-    //     const token = await AsyncStorage.getItem('token')
+    function showOptions() {
+        setShow(!show)
+        console.log(show)
+    }
 
-    //     // API connection
 
-    //     const response = await fetch("http://localhost:3333/deleteAppointmentReminders", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             'Authorization': `Bearer ${token}`
-    //         },
+    async function handleDeleteAppointment(appointmentReminderId: number) {
+        const token = await AsyncStorage.getItem('token')
 
-    //         body: JSON.stringify({
-    //             appointmentReminderId: appointmentReminderId,
-    //         }),
-    //     });
 
-    //     // login sucess or not
-    //     if (response.status === 200) {
-    //         // sucessNotification("Lembrete de consulta deletado!")
-    //         navigation.navigate('/AppointmentReminderPage');
+        // API connection
+        const response = await api.post(
+            `deleteAppointmentReminders`,
+            {
+                appointmentReminderId: appointmentReminderId,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
 
-    //     } else {
-    //         // errorNotification("Não foi possível deletar lembrete!")
-    //     }
-    // }
+        navigation.navigate('AppointmentReminderPage')
+    }
 
-    // async function handleNotDoneAppointment(appointmentReminderId: number) {
-    //     const token = await AsyncStorage.getItem('token')
+    async function handleNotDoneAppointment(appointmentReminderId: number) {
+        const token = await AsyncStorage.getItem('token')
 
-    //     // API connection
-    //     const response = await fetch("http://localhost:3333/updateAppointmentReminders", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             'Authorization': `Bearer ${token}`
-    //         },
+        // API connection
+        const response = await api.post(
+            `updateAppointmentReminders`,
+            {
+                appointmentReminderId: appointmentReminderId,
+                status: "notDone"
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
 
-    //         body: JSON.stringify({
-    //             appointmentReminderId: appointmentReminderId,
-    //             status: "notDone"
-    //         }),
-    //     });
+        window.location.reload()
+    }
 
-    //     // login sucess or not
-    //     if (response.status === 200) {
-    //         // sucessNotification("Consulta marcada como NÃO concluída")
-    //         navigation.navigate('/AppointmentsReminder');
+    async function handleDoneAppointment(appointmentReminderId: number) {
+        const token = await AsyncStorage.getItem('token')
 
-    //     } else {
-    //         // errorNotification("Não foi possível alterar o estado da consulta")
-    //     }
-    // }
+        // API connection
+        const response = await api.post(
+            `updateAppointmentReminders`,
+            {
+                appointmentReminderId: appointmentReminderId,
+                status: "done"
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
 
-    // async function handleDoneAppointment(appointmentReminderId: number) {
-    //     const token = await AsyncStorage.getItem('token')
-
-    //     // API connection
-    //     const response = await fetch("http://localhost:3333/updateAppointmentReminders", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             'Authorization': `Bearer ${token}`
-    //         },
-
-    //         body: JSON.stringify({
-    //             appointmentReminderId: appointmentReminderId,
-    //             status: "done"
-    //         }),
-    //     });
-
-    //     // login sucess or not
-    //     if (response.status === 200) {
-    //         // sucessNotification("Consulta concluída")
-    //         navigation.navigate('/AppointmentsReminder');
-
-    //     } else {
-    //         //errorNotification("Não foi possível alterar o estado da consulta")
-    //     }
-    // }
+        navigation.navigate('AppointmentReminderPage')
+    }
 
     return (
-        <View style={styles.container} key={props.state}>
+        <TouchableOpacity
+            style={
+                props.state !== 'done'
+                    ? (props.state === 'notDone' ? styles.notDoneContainer : styles.container)
+                    : styles.doneContainer
+            }
+            key={props.state}
+            onLongPress={showOptions}
+
+        >
 
             <ScrollView
                 style={styles.scroll}
@@ -110,70 +110,58 @@ export function AppointmentReminder(props: AppointmentReminderProps) {
             >
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>{props.hospitalName}</Text>
+                    <Text style={[styles.text, props.state !== 'loading' ? { color: '#fff' } : { color: theme.colors.purple }]}>{props.hospitalName}</Text>
                 </View>
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>{props.specialty}</Text>
+                    <Text style={[styles.text, props.state !== 'loading' ? { color: '#fff' } : { color: theme.colors.purple }]}>{props.specialty}</Text>
                 </View>
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>{props.time}</Text>
+                    <Text style={[styles.text, props.state !== 'loading' ? { color: '#fff' } : { color: theme.colors.purple }]}>{props.time}</Text>
                 </View>
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>{props.date}</Text>
+                    <Text style={[styles.text, props.state !== 'loading' ? { color: '#fff' } : { color: theme.colors.purple }]}>{props.date}</Text>
                 </View>
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>{props.contactPhone}</Text>
+                    <Text style={[styles.text, props.state !== 'loading' ? { color: '#fff' } : { color: theme.colors.purple }]}>{props.contactPhone}</Text>
                 </View>
-
-                
-
 
             </ScrollView>
 
-            {/* <View style={styles.appointmentState} key={props.state}>
-                {
-                    props.state === 'done'
-                        ? 'Consulta concluída'
-                        : (props.state === 'notDone' ? 'Consulta não concluída' : 'Em andamento...')
-                }
-            </View> */}
+            {show ? (
 
-            {/* <tr>
-                <th>{props.hospitalName}</th>
-                <th>{props.specialty}</th>
-                <th>{props.time}</th>
-                <th>{props.date}</th>
-                <th>{props.contactPhone}</th>
-            </tr> */}
+                <View style={styles.appointmentOptionsButtonContainer}>
+                    <TouchableOpacity
+                        onPress={() => handleDeleteAppointment(props.id)}
+                        style={styles.appointmentOptionsButton}
+                    >
+                        <Text style={{ color: '#fff', fontSize: 18 }}>Deletar</Text>
+                    </TouchableOpacity>
 
-            {/* <View style={styles.AppointmentReminderButtons}>
-                <AppointmentReminderButton
-                    // onPress={() => handleDeleteAppointment(props.id)}
-                    color='var(--purple)'
-                    legend='Deletar'
-                /> */}
+                    {props.state === 'loading' ? (
+                        <>
+                            <TouchableOpacity
+                                onPress={() => handleNotDoneAppointment(props.id)}
+                                style={styles.appointmentOptionsButton}
+                            >
+                                <Text style={{ color: '#fff', fontSize: 18 }}>Não Concluido</Text>
+                            </TouchableOpacity>
 
-            {/* {props.state === 'loading' ? (
-                    <>
-                        <AppointmentReminderButton
-                            // onPress={() => handleNotDoneAppointment(props.id)}
-                            color='var(--red)'
-                            legend='Consulta Não Concluída'
-                        />
+                            <TouchableOpacity
+                                onPress={() => handleDoneAppointment(props.id)}
+                                style={styles.appointmentOptionsButton}
+                            >
+                                <Text style={{ color: '#fff', fontSize: 18 }}>Concluido</Text>
+                            </TouchableOpacity>
+                        </>
+                    ) : (<></>)}
+                </View>
 
-                        <AppointmentReminderButton
-                            // onPress={() => handleDoneAppointment(props.id)}
-                            color='var(--green)'
-                            legend='Consulta Concluída'
-                        />
-                    </>
-                ) : ''} */}
-            {/* </View> */}
+            ) : (<></>)}
 
-        </View >
+        </TouchableOpacity >
     )
 }
