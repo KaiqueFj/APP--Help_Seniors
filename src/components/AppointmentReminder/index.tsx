@@ -25,9 +25,7 @@ export function AppointmentReminder(props: AppointmentReminderProps) {
 
     function showOptions() {
         setShow(!show)
-        console.log(show)
     }
-
 
     async function handleDeleteAppointment(appointmentReminderId: number) {
         const token = await AsyncStorage.getItem('token')

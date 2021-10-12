@@ -1,9 +1,8 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Header } from "../../components/Header/index";
 import { EmergencyItem } from "./EmergencyItens";
-
-import { styles } from './styles'
+import { styles } from './styles';
 
 export function Emergency() {
     return (
@@ -17,16 +16,19 @@ export function Emergency() {
                 <EmergencyItem
                     banner={require('../../../assets/icons/copBanner.jpg')}
                     legend='Polícia - 190'
+                    number='190'
                 />
 
                 <EmergencyItem
                     banner={require('../../../assets/icons/firemanBanner.jpg')}
                     legend='Bombeiros - 193'
+                    number='193'
                 />
 
                 <EmergencyItem
                     banner={require('../../../assets/icons/ambulanceBanner.jpg')}
                     legend='Ambulância - 192'
+                    number='192'
                 />
             </View>
         </View>

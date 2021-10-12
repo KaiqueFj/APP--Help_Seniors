@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: theme.colors.green,
+    backgroundColor: theme.colors.purple,
     borderRadius: 15,
     position: 'relative',
     bottom: -35,

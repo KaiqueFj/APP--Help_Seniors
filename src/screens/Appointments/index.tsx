@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { AsyncStorage, Text, View, ScrollView } from "react-native";
-import { Header } from "../../components/Header";
-import { api } from "../../services/api";
-import { useApp } from "../../hooks/useApp";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/core"
-
-import { NewAppointmentReminderButton } from "../../components/NewAppointmentReminderButton";
+import { AsyncStorage, ScrollView, Text, View } from "react-native";
 import { AppointmentReminder } from "../../components/AppointmentReminder/index";
-
+import { Header } from "../../components/Header";
+import { NewAppointmentReminderButton } from "../../components/NewAppointmentReminderButton";
+import { api } from "../../services/api";
 import { styles } from './styles';
 
 type AppointmentReminderData = {
@@ -20,10 +15,6 @@ type AppointmentReminderData = {
     contactPhone: string,
     status: string,
 };
-
-// type AppointmentReminderPage = {
-//     data: AppointmentReminderData[]
-// }
 
 
 export function AppointmentReminderPage() {
@@ -80,25 +71,3 @@ export function AppointmentReminderPage() {
         </View >
     )
 }
-
-// export async function getServerSideProps() {
-//     // Get token in cookies -> AsyncStorage
-//     const token = await AsyncStorage.getItem('token')
-
-//     // API connection
-//     const response = await fetch('http://localhost:3333/showAppointmentReminders', {
-//         method: "GET",
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': ` Bearer ${token}`
-//         },
-//     });
-
-//     const data = await response.json();
-
-//     return {
-//         props: {
-//             data: data
-//         }
-//     }
-// }
