@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { AsyncStorage, ScrollView, Text, View } from "react-native";
-import { AppointmentReminder } from "../../components/AppointmentReminder/index";
+import { AppointmentReminder } from "./components/AppointmentReminder/index";
 import { Header } from "../../components/Header";
-import { NewAppointmentReminderButton } from "../../components/NewAppointmentReminderButton";
+import { NewAppointmentReminderButton } from "../AddAppointmentReminder/components/NewAppointmentReminderButton";
 import { api } from "../../services/api";
 import { styles } from './styles';
 

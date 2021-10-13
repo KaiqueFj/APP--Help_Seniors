@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { theme } from '../../global/styles/theme'
+import { theme } from '../../../../global/styles/theme'
 
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: 120,
-    marginTop: 20,
+    marginTop: 35,
 
     flexDirection: 'column',
     alignItems: 'center',
@@ -22,14 +22,12 @@ export const styles = StyleSheet.create({
     paddingRight: 20,
 
     position: 'relative',
-
-
   },
 
   doneContainer: {
     width: '100%',
     height: 120,
-    marginTop: 20,
+    marginTop: 35,
 
     flexDirection: 'column',
     alignItems: 'center',
@@ -50,7 +48,7 @@ export const styles = StyleSheet.create({
   notDoneContainer: {
     width: '100%',
     height: 120,
-    marginTop: 20,
+    marginTop: 35,
 
     flexDirection: 'column',
     alignItems: 'center',
@@ -61,9 +59,9 @@ export const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderLeftWidth: 1,
 
-    borderColor: '#dd4242',
+    borderColor: theme.colors.red,
 
-    backgroundColor: '#dd4242',
+    backgroundColor: theme.colors.red,
     paddingRight: 20,
     position: 'relative',
   },

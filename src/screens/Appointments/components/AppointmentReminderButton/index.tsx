@@ -8,7 +8,6 @@ import { styles } from './styles';
 type AppointmentReminderButtonProps = {
     color: string;
     legend: string;
-    // onPress : () => void,
 }
 
 export function AppointmentReminderButton(props: AppointmentReminderButtonProps) {

@@ -31,7 +31,7 @@ export function AddAppointmentReminder() {
     {/* @ts-ignore */ }
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        setShow(Platform.OS === 'android')
+        setShow(false)
         setDate(currentDate);
 
         // Process the date values
