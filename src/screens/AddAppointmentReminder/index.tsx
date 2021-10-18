@@ -8,6 +8,7 @@ import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { Header } from "../../components/Header";
 import { api } from '../../services/api';
 import ToastManager, { toast } from 'react-toastify';
+
 import { styles } from './styles';
 
 type OnSubmitProps = {
@@ -169,7 +170,8 @@ export function AddAppointmentReminder() {
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => toast.success("This is success message")}
+                // onPress={() => toast.success("This is success message")}
+                onPress={() => onSubmit}
 
             >
                 <Text style={styles.buttonLegend}>Adicionar Lembrete</Text>

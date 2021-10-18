@@ -33,14 +33,16 @@ export const styles = StyleSheet.create({
 
     medicinesContainer: {
 
-        width: '90%',
+        width: 325,
         height: 75,
 
-        marginTop: 10,
+        marginTop: 15,
         alignItems: 'center',
-        
+
         backgroundColor: theme.colors.purple,
         borderRadius: 15,
+
+        position: 'relative',
 
     },
     legend: {
@@ -48,7 +50,30 @@ export const styles = StyleSheet.create({
         fontFamily: theme.fonts.bold700,
         fontSize: 25,
         color: '#fff',
-        
 
-    }
+
+    },
+
+    appointmentOptionsButtonContainer: {
+        width: 50,
+        height: 75,
+
+        position: 'absolute',
+        top: 0,
+        right: 0,
+    },
+
+    appointmentOptionsButton: {
+        height: 75,
+        paddingLeft: 10,
+        paddingRight: 10,
+
+        backgroundColor: theme.colors.red,
+
+        flex: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        borderRadius: 10,
+    },
 })

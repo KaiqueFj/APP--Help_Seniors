@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import {theme} from '../../../../global/styles/theme'
+import { theme } from '../../../../global/styles/theme'
 
 export const styles = StyleSheet.create({
     container: {
@@ -27,6 +27,13 @@ export const styles = StyleSheet.create({
         width: 85,
         height: 85,
 
-        borderRadius: 85/2
+        borderRadius: 85 / 2
     },
+
+    logoutBtn: {
+        backgroundColor: '#f42',
+        width: '50%',
+        height: '50#'
+
+    }
 })

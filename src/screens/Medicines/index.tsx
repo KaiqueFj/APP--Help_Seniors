@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { AsyncStorage, Text, View } from "react-native";
+import { AsyncStorage, ImageBackground, Text, View } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Header } from "../../components/Header";
 import { theme } from "../../global/styles/theme";
@@ -9,9 +9,7 @@ import { daysOfWeek } from "../../utils/daysWeek";
 import { handleMedicineData, handleStatusOfMedicines } from "../../utils/handleMedicinesData";
 import { joinMedicinesWithAndWithoutStatus } from "../../utils/joinMedicinesWithAndWithoutStatus";
 import { medicinesOnDay } from "../../utils/medicinesOnDay";
-// import { daysWeek } from '../../utils/daysWeek'
-
-import { styles } from './styles'
+import { styles } from './styles';
 
 type MedicinesData = {
     name: string;
@@ -27,6 +25,12 @@ export function Medicines() {
 
     const [medicines, setMedicines] = useState<MedicinesData[]>()
     const daysWeek = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+
+    const [show, setShow] = useState(false)
+
+    function showOptions() {
+        setShow(!show)
+    }
 
     useEffect(() => {
         connectApi()
@@ -56,6 +60,14 @@ export function Medicines() {
         setMedicines(AllmedicinesHandled)
     }
 
+    async function deleteMedicine(medicineId: number) {
+
+        // API connection
+        const response = await api.post("deleteMedicine", {
+            medicineId: medicineId,
+        })
+    }
+
 
     const days = daysOfWeek();
     const currentDay = moment().format("YYYY-MM-DD");
@@ -79,38 +91,88 @@ export function Medicines() {
             }}>
 
                 {daysWeek.map(day => (
-                    <TouchableOpacity
+                    <View
                         style={[
                             styles.dayContainer,
-                            daysWeek.indexOf(day) === indexOfToday ? { backgroundColor: theme.colors.darkPurple } : (daysWeek.indexOf(day) < indexOfToday ? { display: 'none' } : {})
+                            daysWeek.indexOf(day) === indexOfToday ? { backgroundColor: '#230E6A' } : (daysWeek.indexOf(day) < indexOfToday ? { display: 'none' } : {})
 
                         ]}
                     >
                         <Text style={[
                             styles.dayContainerLegend,
-                            daysWeek.indexOf(day) === indexOfToday ? { color: theme.colors.green } : {}
+                            daysWeek.indexOf(day) === indexOfToday ? { color: '#fff' } : {}
                         ]}>
                             {day}
                         </Text>
 
-                        {/* @ts-ignore */}
-                        {medicines !== undefined ? medicines[daysWeek.indexOf(day)].map(medicines => (
-                            <View style={styles.medicinesContainer}>
 
-                                <ScrollView>
+                        {/* @ts-ignore */}
+                        {medicines !== undefined && medicines[daysWeek.indexOf(day)].length > 0 ? medicines[daysWeek.indexOf(day)].map(medicines => (
+                            <TouchableOpacity
+                                style={styles.medicinesContainer}
+                                key={medicines.id}
+                                onLongPress={showOptions}
+                            >
+
+                                <ScrollView
+                                    horizontal={true}
+                                >
 
                                     <Text
-                                        key={medicines.id}
                                         style={styles.legend}
                                     >
                                         {medicines.time} | {medicines.name}
                                     </Text>
                                 </ScrollView>
 
-                            </View>
-                        )) : <Text>Not has Medicines</Text>}
+                                {show ? (
 
-                    </TouchableOpacity>
+                                    <View style={styles.appointmentOptionsButtonContainer}>
+                                        <TouchableOpacity
+                                            onPress={() => deleteMedicine(medicines.id)}
+                                            style={styles.appointmentOptionsButton}
+                                        >
+                                            <ImageBackground
+                                                source={require('../../../assets/icons/trash.png')}
+                                                style={{
+                                                    width: 35,
+                                                    height: 35,
+                                                }}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
+
+                                ) : (<></>)}
+
+                            </TouchableOpacity>
+
+                        )) : (
+
+                            <View style={{
+                                marginTop: 50,
+                                flex: 0,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'column',
+                            }}>
+                                <ImageBackground
+                                    source={require('../../../assets/icons/noMedicines.png')}
+                                    style={{
+                                        width: 300,
+                                        height: 300,
+                                    }} />
+
+                                <Text style={{
+                                    color: '#fff',
+                                    fontFamily: theme.fonts.medium500,
+                                    fontSize: 25,
+                                    textAlign: 'center',
+                                }}>
+                                    Não há medicmentos{`\n`}{day}</Text>
+                            </View>
+                        )}
+
+                    </View>
                 ))}
 
             </ScrollView>

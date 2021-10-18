@@ -12,6 +12,8 @@ export function Home() {
     const [profileImage, setProfileImage] = useState('')
 
     const [isLogged, setIsLogged] = useState(false)
+    const [refreshing, setRefreshing] = useState(false);
+
 
 
     useEffect(() => {
@@ -20,30 +22,33 @@ export function Home() {
 
     async function getData() {
 
-        // Get Token from Storage
-        const token = await AsyncStorage.getItem('token')
+        try {
 
-        // Try to get userInformations from API if their login has not expired
-        const response = await api.get('showUser', {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
+            const token = await AsyncStorage.getItem('token')
+
+            // Try to get userInformations from API if their login has not expired
+            const response = await api.get('showUser', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            if (response.status = 200) {
+
+                // Save userInformations in variable
+                const { imagePerfil, username } = await response.data
+
+                setUsername(username)
+                setProfileImage(imagePerfil)
+
+                setIsLogged(true)
             }
-        })
 
-        if (response.status = 200) {
-
-            // Save userInformations in variable
-            const { imagePerfil, username } = await response.data
-
-            setUsername(username)
-            setProfileImage(imagePerfil)
-
-            setIsLogged(true)
-
-        } else {
+        } catch {
             setIsLogged(false)
         }
+
     }
 
     if (!isLogged) {
