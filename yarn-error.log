@@ -1,5 +1,5 @@
 Arguments: 
-  E:\Programming\Node\node.exe C:\Users\kaiqu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/react-native-expire-storage
+  E:\Programming\Node\node.exe C:\Users\kaiqu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/toastify-react-native
 
 PATH: 
   C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python38\Scripts\;C:\Python38\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;E:\Programming\Languages\Python;E:\Programming\Languages\Python\Scripts;C:\ProgramData\chocolatey\bin;E:\Programming\Node\;E:\Programming\GIT\Git\cmd;C:\Users\kaiqu\AppData\Local\Microsoft\WindowsApps;E:\Programas\Visual Code\Microsoft VS Code\bin;E:\Programming\Languages\Python;E:\Programming\Languages\Python\Scripts;C:\Users\kaiqu\AppData\Roaming\npm\yarn.ps1;C:\Users\kaiqu\AppData\Roaming\npm
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2freact-native-expire-storage: Not found
+  Error: https://registry.yarnpkg.com/@types%2ftoastify-react-native: Not found
       at Request.params.callback [as _callback] (C:\Users\kaiqu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
       at Request.self.callback (C:\Users\kaiqu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
       at Request.emit (events.js:315:20)
@@ -38,24 +38,30 @@ npm manifest:
     },
     "dependencies": {
       "@expo-google-fonts/montserrat": "^0.2.0",
+      "@react-native-community/datetimepicker": "3.5.2",
       "@react-navigation/native": "^6.0.2",
       "@react-navigation/native-stack": "^6.1.0",
       "@react-navigation/stack": "^6.0.7",
+      "@types/react-native-base64": "^0.1.0",
       "axios": "^0.21.4",
       "expo": "~42.0.1",
       "expo-app-loading": "^1.1.2",
       "expo-linear-gradient": "~9.2.0",
       "expo-status-bar": "~1.0.4",
+      "moment": "^2.29.1",
       "react": "16.13.1",
       "react-dom": "16.13.1",
       "react-hook-form": "^7.15.3",
       "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-      "react-native-expire-storage": "^0.0.3",
+      "react-native-base64": "^0.2.1",
+      "react-native-date-picker": "^4.0.0",
       "react-native-gesture-handler": "~1.10.2",
       "react-native-safe-area-context": "3.2.0",
       "react-native-screens": "^3.7.2",
       "react-native-web": "~0.13.12",
-      "react-navigation-stack": "react-navigation/stack"
+      "react-navigation-stack": "react-navigation/stack",
+      "react-toastify": "^8.0.3",
+      "toastify-react-native": "^2.0.0"
     },
     "devDependencies": {
       "@babel/core": "^7.9.0",
@@ -1531,13 +1537,6 @@ Lockfile:
       "@nodelib/fs.scandir" "2.1.5"
       fastq "^1.6.0"
   
-  "@react-native-community/async-storage@^1.6.2":
-    version "1.12.1"
-    resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.12.1.tgz#25f821b4f6b13abe005ad67e47c6f1cee9f27b24"
-    integrity sha512-70WGaH3PKYASi4BThuEEKMkyAgE9k7VytBqmgPRx3MzJx9/MkspwqJGmn3QLCgHLIFUgF1pit2mWICbRJ3T3lg==
-    dependencies:
-      deep-assign "^3.0.0"
-  
   "@react-native-community/cli-debugger-ui@^4.13.1":
     version "4.13.1"
     resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz#07de6d4dab80ec49231de1f1fbf658b4ad39b32c"
@@ -1658,6 +1657,13 @@ Lockfile:
       sudo-prompt "^9.0.0"
       wcwidth "^1.0.1"
   
+  "@react-native-community/datetimepicker@3.5.2":
+    version "3.5.2"
+    resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-3.5.2.tgz#8e6feb30f2620e5abdf565d5fe74c0c04edcf6ae"
+    integrity sha512-TWRuAtr/DnrEcRewqvXMLea2oB+YF+SbtuYLHguALLxNJQLl/RFB7aTNZeF+OoH75zKFqtXECXV1/uxQUpA+sg==
+    dependencies:
+      invariant "^2.2.4"
+  
   "@react-navigation/core@^6.0.1":
     version "6.0.1"
     resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-6.0.1.tgz#4424ee1f83e2e305ef80d27c2778fb82fba852a0"
@@ -1748,6 +1754,11 @@ Lockfile:
     version "15.7.4"
     resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
     integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
+  
+  "@types/react-native-base64@^0.1.0":
+    version "0.1.0"
+    resolved "https://registry.yarnpkg.com/@types/react-native-base64/-/react-native-base64-0.1.0.tgz#e26b579c34f9840f43b5e97ddb5200c04e84fc3a"
+    integrity sha512-i93+Zir+aL65XYo8FYEJj/jJXucqoNnKZVqWzZtjoPuXQ39orYDlGL2/2djUbiB8efYa9TXPfE70aCXc5CEk+g==
   
   "@types/react-native@~0.63.2":
     version "0.63.53"
@@ -2429,6 +2440,11 @@ Lockfile:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
     integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
+  
+  clsx@^1.1.1:
+    version "1.1.1"
+    resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
+    integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
   
   collection-visit@^1.0.0:
     version "1.0.0"
@@ -4518,6 +4534,11 @@ Lockfile:
     dependencies:
       minimist "^1.2.5"
   
+  moment@^2.29.1:
+    version "2.29.1"
+    resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+    integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+  
   ms@2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -5072,12 +5093,15 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
     integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
   
-  react-native-expire-storage@^0.0.3:
-    version "0.0.3"
-    resolved "https://registry.yarnpkg.com/react-native-expire-storage/-/react-native-expire-storage-0.0.3.tgz#f0e65b771f89269d5d61f1939ba99304c3d71984"
-    integrity sha512-JFaAe6nOJ7HfoIVXl6rLnqUgQfmf2Mf58ITAQeYDdlo6I+u0coG8o8QIMnK8I9CoZZ7ym+W1CtVWNpaWWSsw6A==
-    dependencies:
-      "@react-native-community/async-storage" "^1.6.2"
+  react-native-base64@^0.2.1:
+    version "0.2.1"
+    resolved "https://registry.yarnpkg.com/react-native-base64/-/react-native-base64-0.2.1.tgz#3d0e73a649c4c0129f7b7695d3912456aebae847"
+    integrity sha512-eHgt/MA8y5ZF0aHfZ1aTPcIkDWxza9AaEk4GcpIX+ZYfZ04RcaNahO+527KR7J44/mD3efYfM23O2C1N44ByWA==
+  
+  react-native-date-picker@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/react-native-date-picker/-/react-native-date-picker-4.0.0.tgz#bc05e80b61d67e178653091a0a9220012e406fe3"
+    integrity sha512-KbGn6rfR6vlxKwts4n9YPAdRd8RoVTlxTRv9wKFe4amPgGN7ddv/GfyMrp3UbKDy6xWNrtnzkbBWja5neg8URg==
   
   react-native-gesture-handler@~1.10.2:
     version "1.10.3"
@@ -5170,6 +5194,13 @@ Lockfile:
     version "0.13.4"
     resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
     integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
+  
+  react-toastify@^8.0.3:
+    version "8.0.3"
+    resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-8.0.3.tgz#7fbf65f69ec357aab8dd03c1496f9177aa92409a"
+    integrity sha512-rv3koC7f9lKKSkdpYgo/TGzgWlrB/aaiUInF1DyV7BpiM4kyTs+uhu6/r8XDMtBY2FOIHK+FlK3Iv7OzpA/tCA==
+    dependencies:
+      clsx "^1.1.1"
   
   react@16.13.1:
     version "16.13.1"
@@ -5913,6 +5944,11 @@ Lockfile:
       extend-shallow "^3.0.2"
       regex-not "^1.0.2"
       safe-regex "^1.1.0"
+  
+  toastify-react-native@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.yarnpkg.com/toastify-react-native/-/toastify-react-native-2.0.0.tgz#5a44d45156dd3aec4b43f349b68c29fc5f323bb4"
+    integrity sha512-1OZVtZifjSTR4VNcNlbBtTlN79eU7Cp6foyJwd1p7zwlQP6jbzSf0EzgTNNQ8gR2m8vu5X8YtysE9e/2GHXzRA==
   
   toidentifier@1.0.0:
     version "1.0.0"

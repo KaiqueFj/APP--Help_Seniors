@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AsyncStorage, Text, View } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Header } from "../../components/Header";
+import { theme } from "../../global/styles/theme";
 import { api } from "../../services/api";
 import { daysOfWeek } from "../../utils/daysWeek";
 import { handleMedicineData, handleStatusOfMedicines } from "../../utils/handleMedicinesData";
@@ -79,15 +80,31 @@ export function Medicines() {
 
                 {daysWeek.map(day => (
                     <TouchableOpacity
-                        style={styles.dayContainer}                        
+                        style={[
+                            styles.dayContainer,
+                            daysWeek.indexOf(day) === indexOfToday ? { backgroundColor: theme.colors.darkPurple } : (daysWeek.indexOf(day) < indexOfToday ? { display: 'none' } : {})
+
+                        ]}
                     >
-                        <Text style={styles.dayContainerLegend}>{day}</Text>
+                        <Text style={[
+                            styles.dayContainerLegend,
+                            daysWeek.indexOf(day) === indexOfToday ? { color: theme.colors.green } : {}
+                        ]}>
+                            {day}
+                        </Text>
 
                         {/* @ts-ignore */}
                         {medicines !== undefined ? medicines[daysWeek.indexOf(day)].map(medicines => (
                             <View style={styles.medicinesContainer}>
+
                                 <ScrollView>
-                                <Text key={medicines.id} style={styles.legend}>{medicines.time} | {medicines.name} </Text>
+
+                                    <Text
+                                        key={medicines.id}
+                                        style={styles.legend}
+                                    >
+                                        {medicines.time} | {medicines.name}
+                                    </Text>
                                 </ScrollView>
 
                             </View>
