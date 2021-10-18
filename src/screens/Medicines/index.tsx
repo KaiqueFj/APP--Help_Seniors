@@ -1,9 +1,14 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { AsyncStorage, Text, View } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { Header } from "../../components/Header";
 import { api } from "../../services/api";
+import { daysOfWeek } from "../../utils/daysWeek";
 import { handleMedicineData, handleStatusOfMedicines } from "../../utils/handleMedicinesData";
 import { joinMedicinesWithAndWithoutStatus } from "../../utils/joinMedicinesWithAndWithoutStatus";
 import { medicinesOnDay } from "../../utils/medicinesOnDay";
+// import { daysWeek } from '../../utils/daysWeek'
 
 import { styles } from './styles'
 
@@ -20,6 +25,7 @@ type MedicinesData = {
 export function Medicines() {
 
     const [medicines, setMedicines] = useState<MedicinesData[]>()
+    const daysWeek = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
 
     useEffect(() => {
         connectApi()
@@ -40,8 +46,6 @@ export function Medicines() {
         const medicinesHandled = handleMedicineData(response.data)
         const medicinesStatusHandled = handleStatusOfMedicines(response.data)
 
-        console.log(medicinesHandled)
-
         // // calls the function to handle the data
         const allMedicines = medicinesOnDay(medicinesHandled);
 
@@ -51,11 +55,50 @@ export function Medicines() {
         setMedicines(AllmedicinesHandled)
     }
 
+
+    const days = daysOfWeek();
+    const currentDay = moment().format("YYYY-MM-DD");
+
+    // Get medicines of today
+    const indexOfToday = days.indexOf(currentDay);
+
     return (
         <View style={styles.container}>
-            {medicines !== undefined ? medicines.map(medicines => (
-                <Text key={medicines.id}>{medicines.name}dsada</Text>
-            )) : <Text>Not has Medicines</Text>}
+
+            <Header />
+
+            <ScrollView style={{
+                width: '90%',
+
+                flex: 0,
+                height: 200,
+
+                marginTop: 120,
+                marginBottom: 20
+            }}>
+
+                {daysWeek.map(day => (
+                    <TouchableOpacity
+                        style={styles.dayContainer}                        
+                    >
+                        <Text style={styles.dayContainerLegend}>{day}</Text>
+
+                        {/* @ts-ignore */}
+                        {medicines !== undefined ? medicines[daysWeek.indexOf(day)].map(medicines => (
+                            <View style={styles.medicinesContainer}>
+                                <ScrollView>
+                                <Text key={medicines.id} style={styles.legend}>{medicines.time} | {medicines.name} </Text>
+                                </ScrollView>
+
+                            </View>
+                        )) : <Text>Not has Medicines</Text>}
+
+                    </TouchableOpacity>
+                ))}
+
+            </ScrollView>
+
         </View>
+
     )
 }

@@ -1,7 +1,9 @@
 import { useNavigation } from "@react-navigation/core";
+import moment from "moment";
 import React, { useState } from "react";
 import { createContext, ReactNode } from "react";
 import { AsyncStorage } from "react-native";
+import { daysOfWeek } from "../utils/daysWeek";
 
 type AppContextProviderProps = {
     children: ReactNode
@@ -33,6 +35,7 @@ export function AppContextProvider(props: AppContextProviderProps) {
         const firstAidInStorage = await AsyncStorage.getItem('firstAid')
         return firstAidInStorage !== null ? JSON.parse(firstAidInStorage) : {};
     }
+
 
     return (
         <AppContext.Provider
