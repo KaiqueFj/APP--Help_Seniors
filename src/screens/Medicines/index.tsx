@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { AsyncStorage, ImageBackground, Text, View } from "react-native";
@@ -27,6 +28,7 @@ export function Medicines() {
     const daysWeek = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
 
     const [show, setShow] = useState(false)
+    const navigation = useNavigation()
 
     function showOptions() {
         setShow(!show)
@@ -92,6 +94,7 @@ export function Medicines() {
 
                 {daysWeek.map(day => (
                     <View
+                        key={day}
                         style={[
                             styles.dayContainer,
                             daysWeek.indexOf(day) === indexOfToday ? { backgroundColor: '#230E6A' } : (daysWeek.indexOf(day) < indexOfToday ? { display: 'none' } : {})
@@ -148,13 +151,15 @@ export function Medicines() {
 
                         )) : (
 
-                            <View style={{
+                            <TouchableOpacity style={{
                                 marginTop: 50,
                                 flex: 0,
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 flexDirection: 'column',
-                            }}>
+                            }}
+                            onPress={() => navigation.navigate('NewMedicines')}
+                            >
                                 <ImageBackground
                                     source={require('../../../assets/icons/noMedicines.png')}
                                     style={{
@@ -169,7 +174,7 @@ export function Medicines() {
                                     textAlign: 'center',
                                 }}>
                                     Não há medicmentos{`\n`}{day}</Text>
-                            </View>
+                            </TouchableOpacity>
                         )}
 
                     </View>
