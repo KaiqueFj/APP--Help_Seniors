@@ -3,6 +3,8 @@ import { Image, RefreshControl, Text, View } from "react-native";
 import { AsyncStorage, TouchableOpacity } from "react-native";
 
 import base64 from 'react-native-base64';
+import { theme } from "../../../../global/styles/theme";
+import { useApp } from "../../../../hooks/useApp";
 import { styles } from './styles';
 
 type HeaderProps = {
@@ -12,11 +14,8 @@ type HeaderProps = {
 
 export function Header(props: HeaderProps) {
 
+    const {showMenu, toggleShowMenu} = useApp()
     const [imageProfile, setImageProfile] = useState('')
-
-    async function logout() {
-        AsyncStorage.setItem('token', '')
-    }
 
     useEffect(() => {
         // Set Image in profile
@@ -34,21 +33,19 @@ export function Header(props: HeaderProps) {
                 </Text>
             </Text>
 
-            <Image
-                source={
-                    imageProfile !== ''
-                        ? { uri: imageProfile }
-                        : require('../../../../../assets/icons/userPurple.png')
-                }
-                style={styles.imageProfile}
-            />
-
             <TouchableOpacity
-                onPress={logout}
-            // style={styles.logoutBtn}
+                onPress={() => toggleShowMenu(!showMenu)}
             >
-                <Text>Fazer Logout</Text>
+                <Image
+                    source={
+                        imageProfile !== ''
+                            ? { uri: imageProfile }
+                            : require('../../../../../assets/icons/userPurple.png')
+                    }
+                    style={styles.imageProfile}
+                />
             </TouchableOpacity>
+
         </View>
     )
 }

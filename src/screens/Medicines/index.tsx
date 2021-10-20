@@ -1,15 +1,16 @@
-import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { AsyncStorage, ImageBackground, Text, View } from "react-native";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { AsyncStorage, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { Header } from "../../components/Header";
-import { theme } from "../../global/styles/theme";
 import { api } from "../../services/api";
 import { daysOfWeek } from "../../utils/daysWeek";
 import { handleMedicineData, handleStatusOfMedicines } from "../../utils/handleMedicinesData";
 import { joinMedicinesWithAndWithoutStatus } from "../../utils/joinMedicinesWithAndWithoutStatus";
 import { medicinesOnDay } from "../../utils/medicinesOnDay";
+import { MedicinesContainer } from "./components/medicinesContainer";
+import { NewMedicinesButton } from "./components/newMedicinesButton";
+import { NoMedicinesAlert } from "./components/noMedicinesAlert";
 import { styles } from './styles';
 
 type MedicinesData = {
@@ -24,15 +25,16 @@ type MedicinesData = {
 
 export function Medicines() {
 
+
+    const days = daysOfWeek();
+    const currentDay = moment().format("YYYY-MM-DD");
+    const indexOfToday = days.indexOf(currentDay);
+
+    // Medicines and the name of days
     const [medicines, setMedicines] = useState<MedicinesData[]>()
     const daysWeek = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
 
     const [show, setShow] = useState(false)
-    const navigation = useNavigation()
-
-    function showOptions() {
-        setShow(!show)
-    }
 
     useEffect(() => {
         connectApi()
@@ -62,123 +64,66 @@ export function Medicines() {
         setMedicines(AllmedicinesHandled)
     }
 
-    async function deleteMedicine(medicineId: number) {
-
-        // API connection
-        const response = await api.post("deleteMedicine", {
-            medicineId: medicineId,
-        })
-    }
-
-
-    const days = daysOfWeek();
-    const currentDay = moment().format("YYYY-MM-DD");
-
-    // Get medicines of today
-    const indexOfToday = days.indexOf(currentDay);
-
     return (
         <View style={styles.container}>
 
             <Header />
 
-            <ScrollView style={{
-                width: '90%',
+            <ScrollView
+                style={{
+                    width: '90%',
 
-                flex: 0,
-                height: 200,
-
-                marginTop: 120,
-                marginBottom: 20
-            }}>
+                    flex: 0,
+                    marginTop: 120,
+                    marginBottom: 20,
+                }}
+            >
 
                 {daysWeek.map(day => (
                     <View
                         key={day}
                         style={[
-                            styles.dayContainer,
+                            styles.daysOfWeekContainer,
                             daysWeek.indexOf(day) === indexOfToday ? { backgroundColor: '#230E6A' } : (daysWeek.indexOf(day) < indexOfToday ? { display: 'none' } : {})
-
                         ]}
                     >
                         <Text style={[
-                            styles.dayContainerLegend,
+                            styles.daysOfWeekContainerLegend,
                             daysWeek.indexOf(day) === indexOfToday ? { color: '#fff' } : {}
                         ]}>
                             {day}
                         </Text>
 
 
+                        <ScrollView>
+                            {/* @ts-ignore */}
+                            {medicines !== undefined && medicines[daysWeek.indexOf(day)].length > 0 ? medicines[daysWeek.indexOf(day)].map(medicines => (
+
+                                // medicines in the list
+                                <MedicinesContainer
+                                    medicine={medicines}
+                                    key={medicines.id}
+                                />
+
+                            )) : (
+
+                                // Show alert when has no medicines on day
+                                <NoMedicinesAlert
+                                    day={day}
+                                />
+                            )}
+                        </ScrollView>
+
                         {/* @ts-ignore */}
-                        {medicines !== undefined && medicines[daysWeek.indexOf(day)].length > 0 ? medicines[daysWeek.indexOf(day)].map(medicines => (
-                            <TouchableOpacity
-                                style={styles.medicinesContainer}
-                                key={medicines.id}
-                                onLongPress={showOptions}
-                            >
+                        {medicines !== undefined && medicines[daysWeek.indexOf(day)].length > 0 ? (
 
-                                <ScrollView
-                                    horizontal={true}
-                                >
-
-                                    <Text
-                                        style={styles.legend}
-                                    >
-                                        {medicines.time} | {medicines.name}
-                                    </Text>
-                                </ScrollView>
-
-                                {show ? (
-
-                                    <View style={styles.appointmentOptionsButtonContainer}>
-                                        <TouchableOpacity
-                                            onPress={() => deleteMedicine(medicines.id)}
-                                            style={styles.appointmentOptionsButton}
-                                        >
-                                            <ImageBackground
-                                                source={require('../../../assets/icons/trash.png')}
-                                                style={{
-                                                    width: 35,
-                                                    height: 35,
-                                                }}
-                                            />
-                                        </TouchableOpacity>
-                                    </View>
-
-                                ) : (<></>)}
-
-                            </TouchableOpacity>
-
-                        )) : (
-
-                            <TouchableOpacity style={{
-                                marginTop: 50,
-                                flex: 0,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                flexDirection: 'column',
-                            }}
-                            onPress={() => navigation.navigate('NewMedicines')}
-                            >
-                                <ImageBackground
-                                    source={require('../../../assets/icons/noMedicines.png')}
-                                    style={{
-                                        width: 300,
-                                        height: 300,
-                                    }} />
-
-                                <Text style={{
-                                    color: '#fff',
-                                    fontFamily: theme.fonts.medium500,
-                                    fontSize: 25,
-                                    textAlign: 'center',
-                                }}>
-                                    Não há medicmentos{`\n`}{day}</Text>
-                            </TouchableOpacity>
-                        )}
-
+                            // Go to NewMedicines page 
+                            <NewMedicinesButton />
+                        ) : (<></>)}
                     </View>
                 ))}
+
+
 
             </ScrollView>
 

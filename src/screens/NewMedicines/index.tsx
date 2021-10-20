@@ -16,7 +16,7 @@ type NewMedicinesProps = {
     medicineName: string,
     initialDate: string,
     finalDate: string,
-    // time: string
+    time: string
 }
 
 export function NewMedicines() {
@@ -103,7 +103,7 @@ export function NewMedicines() {
                 name: data.medicineName,
                 initialDate: data.initialDate,
                 finalDate:  data.finalDate,
-                time: timeValue,
+                time: data.time,
             },
             {
                 headers: {

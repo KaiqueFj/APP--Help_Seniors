@@ -18,6 +18,8 @@ type FirstAidData = {
 }
 
 type AppContextProps = {
+    showMenu: boolean,
+    toggleShowMenu: (menuState: boolean) => void,
     setFirstAidData: (props: FirstAidData) => void,
     getFirstAidData: () => Promise<FirstAidData | undefined>,
 }
@@ -25,6 +27,12 @@ type AppContextProps = {
 export const AppContext = createContext({} as AppContextProps)
 
 export function AppContextProvider(props: AppContextProviderProps) {
+
+    const [showMenu, setShowMenu] = useState(false)
+
+    function toggleShowMenu(menuState : boolean) {
+        setShowMenu(menuState)
+    }
 
     //FirstAid Functions
     function setFirstAidData(props: FirstAidData) {
@@ -37,11 +45,14 @@ export function AppContextProvider(props: AppContextProviderProps) {
     }
 
 
+
     return (
         <AppContext.Provider
             value={{
                 setFirstAidData,
-                getFirstAidData
+                getFirstAidData,
+                toggleShowMenu,
+                showMenu
             }}
         >
             {props.children}
