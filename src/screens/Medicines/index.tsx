@@ -1,6 +1,6 @@
 import moment from "moment";
-import React, { useEffect, useState } from "react";
-import { AsyncStorage, Text, View } from "react-native";
+import React, { useEffect, useState, } from "react";
+import { AsyncStorage, Text, View, RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Header } from "../../components/Header";
 import { api } from "../../services/api";
@@ -25,7 +25,6 @@ type MedicinesData = {
 
 export function Medicines() {
 
-
     const days = daysOfWeek();
     const currentDay = moment().format("YYYY-MM-DD");
     const indexOfToday = days.indexOf(currentDay);
@@ -33,8 +32,8 @@ export function Medicines() {
     // Medicines and the name of days
     const [medicines, setMedicines] = useState<MedicinesData[]>()
     const daysWeek = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+    const [refreshing, setRefreshing] = React.useState(false);
 
-    const [show, setShow] = useState(false)
 
     useEffect(() => {
         connectApi()
@@ -64,6 +63,17 @@ export function Medicines() {
         setMedicines(AllmedicinesHandled)
     }
 
+    {/* @ts-ignore */ }
+    const wait = timeout => {
+        return new Promise(resolve => setTimeout(resolve, timeout));
+    };
+
+    function onRefresh() {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+        connectApi()
+    }
+
     return (
         <View style={styles.container}>
 
@@ -76,7 +86,10 @@ export function Medicines() {
                     flex: 0,
                     marginTop: 120,
                     marginBottom: 20,
+                    paddingTop: 20,
                 }}
+
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
             >
 
                 {daysWeek.map(day => (

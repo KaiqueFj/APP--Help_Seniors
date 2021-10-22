@@ -24,6 +24,8 @@ export function NewMedicines() {
     const { register, setValue, handleSubmit } = useForm()
     const navigation = useNavigation()
 
+    const currentDate = moment().format('YYYY-MM-DD');
+
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
@@ -92,35 +94,48 @@ export function NewMedicines() {
         register('time')
     }, [register])
 
-    async function onSubmit(data : NewMedicinesProps) {
+    async function onSubmit(data: NewMedicinesProps) {
 
         // Get Token from Storage
         const token = await AsyncStorage.getItem('token')
 
-        const response = await api.post(
-            `registerMedicine`,
-            {
-                name: data.medicineName,
-                initialDate: data.initialDate,
-                finalDate:  data.finalDate,
-                time: data.time,
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+        if (show) {
+            const response = await api.post(
+                `registerMedicine`,
+                {
+                    name: data.medicineName,
+                    initialDate: data.initialDate,
+                    finalDate: data.finalDate,
+                    time: data.time,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
                 }
-            }
 
-        )
+            )
+        } else {
+            const response = await api.post(
+                `registerMedicine`,
+                {
+                    name: data.medicineName,
+                    initialDate: currentDate,
+                    finalDate: currentDate,
+                    time: data.time,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
+                }
 
-        // if (response.status === 200) {
+            )
+        }
 
-        //     navigation.navigate('Medicines')
-
-        // } else {
-        //     // Alert Error with notification popup
-        // }
+        return navigation.navigate('Medicines')
     }
 
     return (

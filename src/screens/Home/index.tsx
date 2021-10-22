@@ -11,7 +11,7 @@ import { styles } from './styles';
 
 export function Home() {
 
-    const { showMenu, toggleShowMenu} = useApp()
+    const { showMenu, toggleShowMenu } = useApp()
 
     const [username, setUsername] = useState('')
     const [profileImage, setProfileImage] = useState('')
@@ -21,6 +21,7 @@ export function Home() {
 
     async function logout() {
         AsyncStorage.setItem('token', '')
+        getData();
     }
 
     useEffect(() => {
@@ -58,100 +59,100 @@ export function Home() {
 
     }
 
-    if (!isLogged) {
-        return <NotLoggedHome />;
-    }
+    if (isLogged) {
+        return (
+            <View style={styles.container}>
+                <Header
+                    name={username}
+                    profileImage={profileImage}
+                />
 
-    return (
-        <View style={styles.container}>
-            <Header
-                name={username}
-                profileImage={profileImage}
-            />
+                <Menu />
 
-            <Menu />
+                {showMenu ? (
+                    <View
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            backgroundColor: theme.colors.darkPurple,
 
-            {showMenu ? (
-                <View
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: theme.colors.darkPurple,
+                            position: 'absolute',
+                            zIndex: 2000,
+                        }}
+                    >
+                        <View style={{
+                            width: '100%',
+                            height: '100%',
 
-                        position: 'absolute',
-                        zIndex: 2000,
-                    }}
-                >
-                    <View style={{
-                        width: '100%',
-                        height: '100%',
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center',
 
-                        flex: 1,
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                            position: 'relative',
+                        }}>
 
-                        position: 'relative',
-                    }}>
-
-                        <View
-                            style={{
-                                position: 'absolute',
-                                right: 40,
-                                top: 75,
-                            }}
-                        >
-                            <TouchableOpacity
-                                onPress={() => toggleShowMenu(!showMenu)}
+                            <View
+                                style={{
+                                    position: 'absolute',
+                                    right: 40,
+                                    top: 75,
+                                }}
                             >
+                                <TouchableOpacity
+                                    onPress={() => toggleShowMenu(!showMenu)}
+                                >
+                                    <Image
+                                        source={require('../../../assets/icons/delete.jpg')}
+                                        style={{
+                                            width: 35,
+                                            height: 35,
+                                        }}
+                                    />
+                                </TouchableOpacity>
+
+                            </View>
+
+                            <TouchableOpacity
+                                onPress={logout}
+                                style={{
+                                    width: 330,
+                                    height: 75,
+                                    backgroundColor: theme.colors.purple,
+
+                                    borderRadius: 15,
+
+                                    flex: 0,
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+
+                                }}
+                            >
+
                                 <Image
-                                    source={require('../../../assets/icons/delete.jpg')}
+                                    source={require('../../../assets/icons/sair.png')}
                                     style={{
-                                        width: 35,
-                                        height: 35,
+                                        width: 40,
+                                        height: 40,
+                                        marginRight: 5,
                                     }}
                                 />
+
+                                <Text
+                                    style={{
+                                        fontFamily: theme.fonts.medium500,
+                                        fontSize: 30,
+                                        color: '#fff',
+                                    }}
+                                >Sair</Text>
                             </TouchableOpacity>
 
                         </View>
-
-                        <TouchableOpacity
-                            onPress={logout}
-                            style={{
-                                width: 330,
-                                height: 75,
-                                backgroundColor: theme.colors.purple,
-
-                                borderRadius: 15,
-
-                                flex: 0,
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-
-                            }}
-                        >
-
-                            <Image
-                                source={require('../../../assets/icons/sair.png')}
-                                style={{
-                                    width: 40,
-                                    height: 40,
-                                    marginRight: 5,
-                                }}
-                            />
-
-                            <Text
-                                style={{
-                                    fontFamily: theme.fonts.medium500,
-                                    fontSize: 30,
-                                    color: '#fff',
-                                }}
-                            >Sair</Text>
-                        </TouchableOpacity>
-
                     </View>
-                </View>
-            ) : (<></>)}
-        </View>
-    )
+                ) : (<></>)}
+            </View>
+        )
+    } else {
+        return <NotLoggedHome/>
+    }
 }
