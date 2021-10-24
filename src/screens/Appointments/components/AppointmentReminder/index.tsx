@@ -1,13 +1,11 @@
+import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { AsyncStorage, ScrollView, Text, View } from "react-native";
-import { AppointmentReminderButton } from '../AppointmentReminderButton/index'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { theme } from '../../../../global/styles/theme';
 import { api } from '../../../../services/api';
-import { styles } from './styles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { style } from '../../../Login/components/Header/styles';
-import { useNavigation } from '@react-navigation/core';
 import { AppointmentStatus } from '../AppontmentStatus';
+import { styles } from './styles';
 
 
 type AppointmentReminderProps = {
@@ -46,7 +44,7 @@ export function AppointmentReminder(props: AppointmentReminderProps) {
             }
         )
 
-        navigation.navigate('AppointmentReminderPage')
+        navigation.navigate('Home')
     }
 
     async function handleNotDoneAppointment(appointmentReminderId: number) {
@@ -88,7 +86,7 @@ export function AppointmentReminder(props: AppointmentReminderProps) {
             }
         )
 
-        navigation.navigate('AppointmentReminderPage')
+        navigation.navigate('Home')
     }
 
     return (

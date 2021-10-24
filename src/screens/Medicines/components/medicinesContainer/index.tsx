@@ -1,8 +1,9 @@
+import { useNavigation } from "@react-navigation/core";
 import React, { useState } from "react";
 import { ImageBackground, Text, View } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { api } from "../../../../services/api";
-import { styles } from './styles'
+import { styles } from './styles';
 
 type MedicinesData = {
     finalDate: string,
@@ -20,6 +21,7 @@ type MedicinesProps = {
 export function MedicinesContainer(props: MedicinesProps) {
 
     const [showDeleteMedicinesButton, setShowDeleteMedicinesButton] = useState(false)
+    const navigation = useNavigation()
 
     function toggleShowDeleteMedicinesButton() {
         setShowDeleteMedicinesButton(!showDeleteMedicinesButton)
@@ -31,6 +33,8 @@ export function MedicinesContainer(props: MedicinesProps) {
         const response = await api.post("deleteMedicine", {
             medicineId: medicineId,
         })
+
+        navigation.navigate('Home')
     }
 
     return (

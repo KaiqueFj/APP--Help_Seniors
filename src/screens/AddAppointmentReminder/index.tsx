@@ -89,19 +89,13 @@ export function AddAppointmentReminder() {
 
         )
 
-        if (response.status === 200) {
-
-            navigation.navigate('AppointmentReminderPage')
-
-        } else {
-            // Alert Error with notification popup
-        }
+        navigation.navigate('AppointmentReminderPage')
     }
 
     return (
         <View style={styles.container}>
             <Header />
-            
+
             <TextInput
                 style={styles.textInput}
                 placeholderTextColor="#62657a"
@@ -170,8 +164,7 @@ export function AddAppointmentReminder() {
 
             <TouchableOpacity
                 style={styles.button}
-                // onPress={() => toast.success("This is success message")}
-                onPress={() => onSubmit}
+                onPress={handleSubmit(onSubmit)}
 
             >
                 <Text style={styles.buttonLegend}>Adicionar Lembrete</Text>

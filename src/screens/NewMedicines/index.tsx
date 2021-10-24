@@ -152,9 +152,6 @@ export function NewMedicines() {
                 </Text>
             </TouchableOpacity>
 
-
-
-
             <TextInput
                 style={styles.textInput}
                 placeholderTextColor="#62657a"

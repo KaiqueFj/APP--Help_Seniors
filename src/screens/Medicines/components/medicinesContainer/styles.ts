@@ -13,6 +13,8 @@ export const styles = StyleSheet.create({
         borderRadius: 15,
 
         position: 'relative',
+        paddingLeft: 15,
+        paddingRight: 15,
     },
 
     legend: {

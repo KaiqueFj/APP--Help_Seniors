@@ -1,8 +1,10 @@
+import { useNavigation } from "@react-navigation/core";
 import moment from "moment";
 import React, { useEffect, useState, } from "react";
 import { AsyncStorage, Text, View, RefreshControl } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Header } from "../../components/Header";
+import { useApp } from "../../hooks/useApp";
 import { api } from "../../services/api";
 import { daysOfWeek } from "../../utils/daysWeek";
 import { handleMedicineData, handleStatusOfMedicines } from "../../utils/handleMedicinesData";
@@ -22,22 +24,30 @@ type MedicinesData = {
     initialDate?: string;
     finalDate?: string;
 }
-
 export function Medicines() {
 
     const days = daysOfWeek();
     const currentDay = moment().format("YYYY-MM-DD");
     const indexOfToday = days.indexOf(currentDay);
+    const navigation = useNavigation();
 
     // Medicines and the name of days
     const [medicines, setMedicines] = useState<MedicinesData[]>()
     const daysWeek = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
     const [refreshing, setRefreshing] = React.useState(false);
 
-
     useEffect(() => {
         connectApi()
     }, [])
+
+    // Refresh Medicines Page
+    useEffect(() => {
+        const refreshMedicinesPage = navigation.addListener('focus', () => {
+            connectApi()
+        });
+
+        return refreshMedicinesPage;
+    }, [navigation]);
 
     async function connectApi() {
 

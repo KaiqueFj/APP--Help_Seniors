@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React, { useEffect, useState } from "react";
 import { AsyncStorage, Image, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -12,21 +13,31 @@ import { styles } from './styles';
 export function Home() {
 
     const { showMenu, toggleShowMenu } = useApp()
+    const navigation = useNavigation()
 
     const [username, setUsername] = useState('')
     const [profileImage, setProfileImage] = useState('')
 
     const [isLogged, setIsLogged] = useState(false)
-    const [refreshing, setRefreshing] = useState(false);
 
     async function logout() {
         AsyncStorage.setItem('token', '')
+        toggleShowMenu(false);
         getData();
     }
 
     useEffect(() => {
         getData()
     }, [])
+
+    // Refresh Home Page
+    useEffect(() => {
+        const refreshMedicinesPage = navigation.addListener('focus', () => {
+            getData()
+        });
+
+        return refreshMedicinesPage;
+    }, [navigation]);
 
     async function getData() {
 
@@ -153,6 +164,6 @@ export function Home() {
             </View>
         )
     } else {
-        return <NotLoggedHome/>
+        return <NotLoggedHome />
     }
 }

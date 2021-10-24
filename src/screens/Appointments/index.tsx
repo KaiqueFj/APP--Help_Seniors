@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 import { NewAppointmentReminderButton } from "../AddAppointmentReminder/components/NewAppointmentReminderButton";
 import { api } from "../../services/api";
 import { styles } from './styles';
+import { useNavigation } from "@react-navigation/core";
 
 type AppointmentReminderData = {
     id: number,
@@ -20,10 +21,20 @@ type AppointmentReminderData = {
 export function AppointmentReminderPage() {
 
     const [data, setData] = useState<AppointmentReminderData[]>()
+    const navigation = useNavigation()
 
     useEffect(() => {
         getData()
     }, [])
+
+    // Refresh Appointments Page
+    useEffect(() => {
+        const refreshMedicinesPage = navigation.addListener('focus', () => {
+            getData()
+        });
+
+        return refreshMedicinesPage;
+    }, [navigation]);
 
     async function getData() {
 
