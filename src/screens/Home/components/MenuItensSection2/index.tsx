@@ -27,7 +27,7 @@ export function MenuItensSection2() {
 
                 </TouchableOpacity>
 
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     style={styles.HospitalContainer}
                     onPress={() => console.log('Hospitals')}
                 >
@@ -37,7 +37,7 @@ export function MenuItensSection2() {
                         source={require('../../../../../assets/icons/consultas.png')}
                         style={[styles.icon, { left: 85 }]}
                     />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
             </View>
 

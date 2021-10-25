@@ -40,6 +40,10 @@ export function Medicines() {
         connectApi()
     }, [])
 
+    const {
+        getAllMedicinesOfDay,
+    } = useApp();
+
     // Refresh Medicines Page
     useEffect(() => {
         const refreshMedicinesPage = navigation.addListener('focus', () => {
@@ -84,6 +88,17 @@ export function Medicines() {
         connectApi()
     }
 
+    useEffect(() => {
+
+        if (medicines !== undefined) {
+            {/* @ts-ignore */ }
+            getAllMedicinesOfDay(medicines);
+        } else {
+            
+        }
+
+    }, [medicines])
+
     return (
         <View style={styles.container}>
 
@@ -110,6 +125,7 @@ export function Medicines() {
                             daysWeek.indexOf(day) === indexOfToday ? { backgroundColor: '#230E6A' } : (daysWeek.indexOf(day) < indexOfToday ? { display: 'none' } : {})
                         ]}
                     >
+
                         <Text style={[
                             styles.daysOfWeekContainerLegend,
                             daysWeek.indexOf(day) === indexOfToday ? { color: '#fff' } : {}
