@@ -12,6 +12,7 @@ import { Help } from "../screens/Help";
 import { AddAppointmentReminder } from "../screens/AddAppointmentReminder";
 import { AppointmentReminderPage } from "../screens/Appointments";
 import { NewMedicines } from "../screens/NewMedicines";
+import { Hospitals } from "../screens/Hospitals";
 
 
 const { Navigator, Screen } = createStackNavigator()
@@ -35,6 +36,10 @@ export function AuthRoutes() {
             <Screen
                 name='Register'
                 component={Register}
+            />
+            <Screen
+                name='Hospitals'
+                component={Hospitals}
             />
             <Screen
                 name='Login'

@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     },
 
     AppointmentContainer: {
-        width: 380,
+        width: 185,
         height: '100%',
 
         backgroundColor: '#6810596c',
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
 
     title: {
         fontFamily: theme.fonts.bold700,
-        fontSize: 25,
+        fontSize: 20,
         color: '#fff',
 
         position: 'absolute',
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     icon: {
         position: 'absolute',
         top: -25,
-        right: -10,
+        right: -35,
 
         width: 150,
         height: 150,
