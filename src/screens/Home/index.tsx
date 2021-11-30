@@ -59,7 +59,7 @@ export function Home() {
                 const { imagePerfil, username } = await response.data
 
                 setUsername(username)
-                setProfileImage(imagePerfil)
+                setProfileImage(imagePerfil ? imagePerfil : '')
 
                 setIsLogged(true)
             }

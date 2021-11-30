@@ -20,8 +20,8 @@ export const styles = StyleSheet.create({
 
     HelpItem: {
         width: 350,
-        height: 80,
-
+        paddingBottom: 5,
+        paddingTop: 5,
         marginTop: 10,
 
         backgroundColor: theme.colors.purple,

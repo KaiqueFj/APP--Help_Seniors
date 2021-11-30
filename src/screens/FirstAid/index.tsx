@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { AsyncStorage, Text, View } from "react-native";
 import { Header } from "../../components/Header";
 import { api } from "../../services/api";
-import { ButtonHelpAndFirstAid } from "../../components/ButtonHelpAndFirstAid/index";
 
 import { styles } from './styles'
 import { useApp } from "../../hooks/useApp";
@@ -52,7 +51,7 @@ export function FirstAid() {
                         </Text>
 
                     </TouchableOpacity>
-                    
+
                 ))
             }
         </View >

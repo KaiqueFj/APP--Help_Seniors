@@ -14,12 +14,14 @@ type HeaderProps = {
 
 export function Header(props: HeaderProps) {
 
-    const {showMenu, toggleShowMenu} = useApp()
+    const { showMenu, toggleShowMenu } = useApp()
     const [imageProfile, setImageProfile] = useState('')
 
     useEffect(() => {
         // Set Image in profile
-        setImageProfile('data:image/jpeg;base64,' + base64.encode(props.profileImage))
+        if (props.profileImage !== '') {
+            setImageProfile('data:image/jpeg;base64,' + base64.encode(props.profileImage))
+        }
     }, [])
 
     return (
