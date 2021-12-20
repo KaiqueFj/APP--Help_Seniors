@@ -58,7 +58,7 @@ Para utilizar o aplicativo, é necessário antes instalar o BackEnd. https://git
 - Atribuir a varível HOST dentro do .ENV do backend o endereço IP da rede.
 
 #### Na aplicação mobile
-- Dentro da pasta Services, no arquivo api.ts mude o endereço IP da varivel baseURL para o mesmo do backend.
+- Dentro da pasta Services, no arquivo api.ts mude o endereço IP da variável 'baseURL' para o mesmo do backend.
 
 ##### Instalando o Backend
 
