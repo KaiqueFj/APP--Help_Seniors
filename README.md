@@ -34,14 +34,14 @@ width=250
 # 📕 Sobre o Projeto 
 
 #### Esse projeto foi criado para o TCC da Etec de Taboão da Serra no curso de Análise e Desenvolvimento de Sistemas Integrado ao Ensino Médio.
-#### O aplicativo Saúde em Mãos foi feito para auxíliar as pessoas que cuidam de idosos e os próprios idosos no gerenciamento de medicamentos, consultas, primeiros-socorros, números de emergência e hospitais/clíncias próximas. Tem-se como funcionalidades:  
+#### O aplicativo Saúde em Mãos foi feito para auxiliar as pessoas que cuidam de idosos e os próprios idosos no gerenciamento de medicamentos, consultas, primeiros-socorros, números de emergência e hospitais/clínicas próximas. Tem-se como funcionalidades:  
  - Notificar os medicamentos a serem tomados no dia;
  - Mostrar um painel semanal dos medicamentos que precisam ser tomados;
  - Cadastrar um medicamento em datas específicas ou em dias únicos;
  - Mostrar um tutorial (vídeo ou texto) rápido e prático de primeiro-socorros em acidentes que mais ocorrem com idosos;
  - Ligar para a emergência (polícia, bombeiro ou ambulância) com menos de dois cliques;
  - Lembrete de consultas em hospitais ou clínicas com informações de horário, data, nome, especialidade e número de contato;
- - Marcar consultas como concluidas ou não concluidas;
+ - Marcar consultas como concluídas ou não concluídas;
  - Tutoriais para o uso da plataforma dentro da aplicação.
 
 # Tecnologias usadas
